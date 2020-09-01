@@ -131,12 +131,12 @@ export default class Oauth2 extends React.Component {
     return (
       <div>
         <h4>{name} (OAuth2, { schema.get("flow") }) <JumpToPath path={[ "securityDefinitions", name ]} /></h4>
-        { !this.state.appName ? null : <h5>Application: { this.state.appName } </h5> }
+        { !this.state.appName ? null : <h5>Aplicação: { this.state.appName } </h5> }
         { description && <Markdown source={ schema.get("description") } /> }
 
-        { isAuthorized && <h6>Authorized</h6> }
+        { isAuthorized && <h6>Autenticado</h6> }
 
-        { ( flow === IMPLICIT || flow === ACCESS_CODE ) && <p>Authorization URL: <code>{ schema.get("authorizationUrl") }</code></p> }
+        { ( flow === IMPLICIT || flow === ACCESS_CODE ) && <p>URL de autenticação: <code>{ schema.get("authorizationUrl") }</code></p> }
         { ( flow === PASSWORD || flow === ACCESS_CODE || flow === APPLICATION ) && <p>Token URL:<code> { schema.get("tokenUrl") }</code></p> }
         <p className="flow">Flow: <code>{ schema.get("flow") }</code></p>
 
@@ -144,7 +144,7 @@ export default class Oauth2 extends React.Component {
           flow !== PASSWORD ? null
             : <Row>
               <Row>
-                <label htmlFor="oauth_username">username:</label>
+                <label htmlFor="oauth_username">usuário:</label>
                 {
                   isAuthorized ? <code> { this.state.username } </code>
                     : <Col tablet={10} desktop={10}>
@@ -156,7 +156,7 @@ export default class Oauth2 extends React.Component {
 
               }
               <Row>
-                <label htmlFor="oauth_password">password:</label>
+                <label htmlFor="oauth_password">senha:</label>
                 {
                   isAuthorized ? <code> ****** </code>
                     : <Col tablet={10} desktop={10}>
@@ -165,7 +165,7 @@ export default class Oauth2 extends React.Component {
                 }
               </Row>
               <Row>
-                <label htmlFor="password_type">Client credentials location:</label>
+                <label htmlFor="password_type">Localização das credenciais do client:</label>
                 {
                   isAuthorized ? <code> { this.state.passwordType } </code>
                     : <Col tablet={10} desktop={10}>
@@ -216,9 +216,9 @@ export default class Oauth2 extends React.Component {
         {
           !isAuthorized && scopes && scopes.size ? <div className="scopes">
             <h2>
-              Scopes:
-              <a onClick={this.selectScopes} data-all={true}>select all</a>
-              <a onClick={this.selectScopes}>select none</a>
+              Escopos:
+              <a onClick={this.selectScopes} data-all={true}>selecionar todos</a>
+              <a onClick={this.selectScopes}>selecionar nenhum</a>
             </h2>
             { scopes.map((description, name) => {
               return (
@@ -254,10 +254,10 @@ export default class Oauth2 extends React.Component {
         <div className="auth-btn-wrapper">
         { isValid &&
           ( isAuthorized ? <Button className="btn modal-btn auth authorize" onClick={ this.logout }>Logout</Button>
-        : <Button className="btn modal-btn auth authorize" onClick={ this.authorize }>Authorize</Button>
+        : <Button className="btn modal-btn auth authorize" onClick={ this.authorize }>Autenticar</Button>
           )
         }
-          <Button className="btn modal-btn auth btn-done" onClick={ this.close }>Close</Button>
+          <Button className="btn modal-btn auth btn-done" onClick={ this.close }>Fechar</Button>
         </div>
 
       </div>

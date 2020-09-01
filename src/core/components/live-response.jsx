@@ -6,7 +6,7 @@ import { Iterable } from "immutable"
 const Headers = ( { headers } )=>{
   return (
     <div>
-      <h5>Response headers</h5>
+      <h5>Headers da resposta</h5>
       <pre className="microlight">{headers}</pre>
     </div>)
 }
@@ -17,7 +17,7 @@ Headers.propTypes = {
 const Duration = ( { duration } ) => {
   return (
     <div>
-      <h5>Request duration</h5>
+      <h5>Tempo da request</h5>
       <pre className="microlight">{duration} ms</pre>
     </div>
   )
@@ -79,12 +79,12 @@ export default class LiveResponse extends React.Component {
             </div>
           </div>
         }
-        <h4>Server response</h4>
+        <h4>Resposta do servidor</h4>
         <table className="responses-table live-responses-table">
           <thead>
           <tr className="responses-header">
-            <td className="col_header response-col_status">Code</td>
-            <td className="col_header response-col_description">Details</td>
+            <td className="col_header response-col_status">Código</td>
+            <td className="col_header response-col_description">Detalhes</td>
           </tr>
           </thead>
           <tbody>
@@ -93,7 +93,7 @@ export default class LiveResponse extends React.Component {
                 { status }
                 {
                   notDocumented ? <div className="response-undocumented">
-                                    <i> Undocumented </i>
+                                    <i> Não documentado </i>
                                   </div>
                                 : null
                 }

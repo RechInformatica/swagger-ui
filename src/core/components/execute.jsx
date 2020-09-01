@@ -24,7 +24,7 @@ export default class Execute extends Component {
     let { path, method, specSelectors, oas3Selectors, oas3Actions } = this.props
     let validationErrors = {
       missingBodyValue: false,
-      missingRequiredKeys: [] 
+      missingRequiredKeys: []
     }
     // context: reset errors, then (re)validate
     oas3Actions.clearRequestBodyValidateError({ path, method })
@@ -89,7 +89,7 @@ export default class Execute extends Component {
   render(){
     return (
         <button className="btn execute opblock-control__btn" onClick={ this.onClick }>
-          Execute
+          Executar
         </button>
     )
   }

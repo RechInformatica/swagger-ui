@@ -171,7 +171,7 @@ export default class Response extends React.Component {
                 })}
               >
                 <small className="response-control-media-type__title">
-                  Media type
+                  Tipo de conteúdo
                 </small>
                 <ContentType
                   value={this.state.responseContentType}
@@ -191,7 +191,7 @@ export default class Response extends React.Component {
               {examplesForMediaType ? (
                 <div className="response-control-examples">
                   <small className="response-control-examples__title">
-                    Examples
+                    Exemplos
                   </small>
                   <ExamplesSelect
                     examples={examplesForMediaType}
@@ -243,7 +243,7 @@ export default class Response extends React.Component {
             links.toSeq().map((link, key) => {
               return <OperationLink key={key} name={key} link={ link } getComponent={getComponent}/>
             })
-          : <i>No links</i>}
+          : <i>Sem links</i>}
         </td> : null}
       </tr>
     )

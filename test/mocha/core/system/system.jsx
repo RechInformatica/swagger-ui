@@ -704,7 +704,7 @@ describe("bound system", function(){
   describe("rootInjects", function() {
     it("should attach a rootInject function as an instance method", function() {
       // This is the same thing as the `afterLoad` tests, but is here for posterity
-      
+
       // Given
       const system = new System({
         plugins: [
@@ -938,7 +938,7 @@ describe("bound system", function(){
         const renderedComponent = render(<Component />)
 
         // Then
-        expect(renderedComponent.text()).toEqual("😱 Could not render BrokenComponent, see the console.")
+        expect(renderedComponent.text()).toEqual("😱 Não foi possível exibir BrokenComponent, veja o console.")
       })
 
       it("should catch errors thrown inside of pure component render methods", function() {
@@ -966,7 +966,7 @@ describe("bound system", function(){
         const renderedComponent = render(<Component />)
 
         // Then
-        expect(renderedComponent.text()).toEqual("😱 Could not render BrokenComponent, see the console.")
+        expect(renderedComponent.text()).toEqual("😱 Não foi possível exibir BrokenComponent, veja o console.")
       })
 
       it("should catch errors thrown inside of stateless component functions", function() {
@@ -989,7 +989,7 @@ describe("bound system", function(){
         const renderedComponent = render(<Component />)
 
         // Then
-        expect(renderedComponent.text().startsWith("😱 Could not render")).toEqual(true)
+        expect(renderedComponent.text().startsWith("😱 Não foi possível exibir")).toEqual(true)
       })
 
       it("should catch errors thrown inside of container components", function() {
@@ -1021,7 +1021,7 @@ describe("bound system", function(){
         )
 
         // Then
-        expect(renderedComponent.text()).toEqual("😱 Could not render BrokenComponent, see the console.")
+        expect(renderedComponent.text()).toEqual("😱 Não foi possível exibir BrokenComponent, veja o console.")
       })
     })
   })

@@ -168,7 +168,7 @@ export default function SwaggerUI(opts) {
       // do nothing
       // this is useful for testing that does not need to do any rendering
     } else {
-      console.error("Skipped rendering: no `dom_id` or `domNode` was specified")
+      console.error("Renderização não realizada: `dom_id` ou `domNode` não especificados")
     }
 
     return system

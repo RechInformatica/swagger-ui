@@ -105,7 +105,7 @@ const SpecErrorItem = ( { error, jumpToLine } ) => {
           <span className="message">{ error.get("message") }</span>
           <div className="error-line">
             { jumpToLine ? (
-              <a onClick={jumpToLine.bind(null, error.get("line"))}>Jump to line { error.get("line") }</a>
+              <a onClick={jumpToLine.bind(null, error.get("line"))}>Ir para linha { error.get("line") }</a>
             ) : null }
           </div>
         </div>

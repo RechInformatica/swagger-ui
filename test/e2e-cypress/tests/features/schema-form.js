@@ -216,7 +216,7 @@ describe("OpenAPI 3.0 Additional JsonSchemaForm in a Parameter", () => {
           .click()
           // Expect new element to be visible after Execute
           .get(".btn-clear.opblock-control__btn")
-          .should("have.text", "Clear")
+          .should("have.text", "Limpar")
       })
       it("should add empty item and allow execution of operation in Try-It-Out", () => {
         cy.visit(
@@ -237,7 +237,7 @@ describe("OpenAPI 3.0 Additional JsonSchemaForm in a Parameter", () => {
           .click()
           // Expect new element to be visible after Execute
           .get(".btn-clear.opblock-control__btn")
-          .should("have.text", "Clear")
+          .should("have.text", "Limpar")
       })
     })
   })
@@ -251,7 +251,7 @@ describe("OpenAPI 3.0 Additional JsonSchemaForm in a Parameter", () => {
           .click()
           // Expand operation
           .get(".opblock-title span")
-          .should("have.text", "Parameters")
+          .should("have.text", "Parâmetros")
           // Expand Try It Out
           .get(".try-out__btn")
           .click()
@@ -260,7 +260,7 @@ describe("OpenAPI 3.0 Additional JsonSchemaForm in a Parameter", () => {
           .click()
           // Expect new element to be visible after Execute
           .get(".btn-clear.opblock-control__btn")
-          .should("have.text", "Clear")
+          .should("have.text", "Limpar")
           // Compare Request URL
           .get(".request-url pre.microlight")
           .should("contain.text", "available")
@@ -273,7 +273,7 @@ describe("OpenAPI 3.0 Additional JsonSchemaForm in a Parameter", () => {
           .click()
           // Expand operation
           .get(".opblock-title span")
-          .should("have.text", "Parameters")
+          .should("have.text", "Parâmetros")
           // Expand Try It Out
           .get(".try-out__btn")
           .click()
@@ -285,7 +285,7 @@ describe("OpenAPI 3.0 Additional JsonSchemaForm in a Parameter", () => {
           .click()
           // Expect new element to be visible after Execute
           .get(".btn-clear.opblock-control__btn")
-          .should("have.text", "Clear")
+          .should("have.text", "Limpar")
             // Compare Request URL
           .get(".request-url pre.microlight")
           .should("contain.text", "pending")
@@ -414,7 +414,7 @@ describe("OpenAPI 3.0 Additional JsonSchemaForm in a Parameter", () => {
           .click()
           // Expect new element to be visible after Execute
           .get(".btn-clear.opblock-control__btn")
-          .should("have.text", "Clear")
+          .should("have.text", "Limpar")
           // Compare Request URL
           .get(".request-url pre.microlight")
           .should("contain.text", "findByTags")
@@ -436,7 +436,7 @@ describe("OpenAPI 3.0 Additional JsonSchemaForm in a Parameter", () => {
           .click()
           // Expect new element to be visible after Execute
           .get(".btn-clear.opblock-control__btn")
-          .should("have.text", "Clear")
+          .should("have.text", "Limpar")
           // Compare Request URL
           .get(".request-url pre.microlight")
           .should("contain.text", "findByTags")
@@ -467,7 +467,7 @@ describe("OpenAPI 3.0 Additional JsonSchemaForm in a Parameter", () => {
           .click()
           // Expect new element to be visible after Execute
           .get(".btn-clear.opblock-control__btn")
-          .should("have.text", "Clear")
+          .should("have.text", "Limpar")
           // Compare Request URL
           .get(".request-url pre.microlight")
           .should("contain.text", "spotted")
@@ -535,7 +535,7 @@ describe("OpenAPI 3.0 Additional JsonSchemaForm in a Parameter", () => {
           .click()
           // Expect new element to be visible after Execute
           .get(".btn-clear.opblock-control__btn")
-          .should("have.text", "Clear")
+          .should("have.text", "Limpar")
           // Compare Request URL
           .get(".request-url pre.microlight")
           .should("contain.text", "tags=spotted&tags=puppy")
@@ -552,7 +552,7 @@ describe("OpenAPI 3.0 Additional JsonSchemaForm in a Parameter", () => {
           .click()
           // Expand operation
           .get(".opblock-title span")
-          .should("have.text", "Parameters")
+          .should("have.text", "Parâmetros")
           // Expand Try It Out
           .get(".try-out__btn")
           .click()
@@ -561,7 +561,7 @@ describe("OpenAPI 3.0 Additional JsonSchemaForm in a Parameter", () => {
           .click()
           // Expect new element to be visible after Execute
           .get(".btn-clear.opblock-control__btn")
-          .should("have.text", "Clear")
+          .should("have.text", "Limpar")
           // Compare Request URL
           .get(".request-url pre.microlight")
           .should("contain.text", "petOwner")
@@ -574,7 +574,7 @@ describe("OpenAPI 3.0 Additional JsonSchemaForm in a Parameter", () => {
           .click()
           // Expand operation
           .get(".opblock-title span")
-          .should("have.text", "Parameters")
+          .should("have.text", "Parâmetros")
           // Expand Try It Out
           .get(".try-out__btn")
           .click()
@@ -585,7 +585,7 @@ describe("OpenAPI 3.0 Additional JsonSchemaForm in a Parameter", () => {
           .click()
           // Expect new element to be visible after Execute
           .get(".btn-clear.opblock-control__btn")
-          .should("have.text", "Clear")
+          .should("have.text", "Limpar")
           // Compare Request URL
           .get(".request-url pre.microlight")
           .should("contain.text", "petOwner")
@@ -612,7 +612,7 @@ describe("OpenAPI 3.0 Additional JsonSchemaForm in a Parameter", () => {
           .click()
           // Expect new element to be visible after Execute
           .get(".btn-clear.opblock-control__btn")
-          .should("have.text", "Clear")
+          .should("have.text", "Limpar")
           // Compare Request URL
           .get(".request-url pre.microlight")
           .should("contain.text", "tags=true")
@@ -636,7 +636,7 @@ describe("OpenAPI 3.0 Additional JsonSchemaForm in a Parameter", () => {
           .click()
           // Expect new element to be visible after Execute
           .get(".btn-clear.opblock-control__btn")
-          .should("have.text", "Clear")
+          .should("have.text", "Limpar")
           // Compare Request URL
           .get(".request-url pre.microlight")
           .should("contain.text", "tags=false")
@@ -665,7 +665,7 @@ describe("OpenAPI 3.0 Additional JsonSchemaForm in a Parameter", () => {
           .click()
           // Expect new element to be visible after Execute
           .get(".btn-clear.opblock-control__btn")
-          .should("have.text", "Clear")
+          .should("have.text", "Limpar")
           // Compare Request URL
           .get(".request-url pre.microlight")
           .should("contain.text", "tags=true&tags=false")
@@ -697,7 +697,7 @@ describe("OpenAPI 3.0 Additional JsonSchemaForm in a Parameter", () => {
           .click()
           // Expect new element to be visible after Execute
           .get(".btn-clear.opblock-control__btn")
-          .should("have.text", "Clear")
+          .should("have.text", "Limpar")
           // Compare Request URL
           .get(".request-url pre.microlight")
           .should("contain.text", "tags=false")
@@ -716,7 +716,7 @@ describe("OpenAPI 3.0 Additional JsonSchemaForm in a Parameter", () => {
           .click()
           // Expect new element to be visible after Execute
           .get(".btn-clear.opblock-control__btn")
-          .should("have.text", "Clear")
+          .should("have.text", "Limpar")
           // Compare Request URL
           .get(".request-url pre.microlight")
           .should("contain.text", "listOfServiceTrainer")
@@ -737,7 +737,7 @@ describe("OpenAPI 3.0 Additional JsonSchemaForm in a Parameter", () => {
           .click()
           // Expect new element to be visible after Execute
           .get(".btn-clear.opblock-control__btn")
-          .should("have.text", "Clear")
+          .should("have.text", "Limpar")
           // Compare Request URL
           .get(".request-url pre.microlight")
           .should("contain.text", "findByPreference")
@@ -759,7 +759,7 @@ describe("OpenAPI 3.0 Additional JsonSchemaForm in a Parameter", () => {
           .click()
           // Expect new element to be visible after Execute
           .get(".btn-clear.opblock-control__btn")
-          .should("have.text", "Clear")
+          .should("have.text", "Limpar")
           // Compare Request URL
           .get(".request-url pre.microlight")
           .should("contain.text", "findByPreference")
@@ -782,7 +782,7 @@ describe("OpenAPI 3.0 Additional JsonSchemaForm in a Parameter", () => {
           .click()
           // Expect new element to be visible after Execute
           .get(".btn-clear.opblock-control__btn")
-          .should("have.text", "Clear")
+          .should("have.text", "Limpar")
           // Compare Request URL
           .get(".request-url pre.microlight")
           .should("contain.text", "findByPreference")
@@ -805,7 +805,7 @@ describe("OpenAPI 3.0 Additional JsonSchemaForm in a Parameter", () => {
           .click()
           // Expect new element to be visible after Execute
           .get(".btn-clear.opblock-control__btn")
-          .should("have.text", "Clear")
+          .should("have.text", "Limpar")
           // Compare Request URL
           .get(".request-url pre.microlight")
           .should("contain.text", "createWithList")
@@ -826,7 +826,7 @@ describe("OpenAPI 3.0 Additional JsonSchemaForm in a Parameter", () => {
           .click()
           // Expect new element to be visible after Execute
           .get(".btn-clear.opblock-control__btn")
-          .should("have.text", "Clear")
+          .should("have.text", "Limpar")
           // Compare Request URL
           .get(".request-url pre.microlight")
           .should("contain.text", "createWithList")
@@ -863,7 +863,7 @@ describe("OpenAPI 3.0 Additional JsonSchemaForm in a Parameter", () => {
           .click()
           // Expect new element to be visible after Execute
           .get(".btn-clear.opblock-control__btn")
-          .should("have.text", "Clear")
+          .should("have.text", "Limpar")
           // Compare Request URL
           .get(".request-url pre.microlight")
           .should("contain.text", "createWithList")

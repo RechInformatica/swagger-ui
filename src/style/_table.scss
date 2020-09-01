@@ -39,9 +39,9 @@ table
             @include text_code();
         }
 
-        .header-example 
+        .header-example
         {
-            color: #999; 
+            color: #999;
             font-style: italic;
         }
     }
@@ -132,7 +132,7 @@ table
 
             padding: 5px;
 
-            content: 'required';
+            content: 'Obrigatório';
 
             color: rgba($table-parameter-name-required-font-color, .6);
         }

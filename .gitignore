@@ -17,6 +17,7 @@ flavors/**/dist/*
 /lib
 /es
 dist/log*
+dist/swagger-ui*
 
 # Cypress
 test/e2e-cypress/screenshots

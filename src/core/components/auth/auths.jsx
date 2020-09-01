@@ -17,24 +17,24 @@ export default class Auths extends React.Component {
     this.state = {}
   }
 
-  onAuthChange =(auth) => {
+  onAuthChange = (auth) => {
     let { name } = auth
 
     this.setState({ [name]: auth })
   }
 
-  submitAuth =(e) => {
+  submitAuth = (e) => {
     e.preventDefault()
 
     let { authActions } = this.props
     authActions.authorize(this.state)
   }
 
-  logoutClick =(e) => {
+  logoutClick = (e) => {
     e.preventDefault()
 
     let { authActions, definitions } = this.props
-    let auths = definitions.map( (val, key) => {
+    let auths = definitions.map((val, key) => {
       return key
     }).toArray()
 
@@ -46,7 +46,7 @@ export default class Auths extends React.Component {
     authActions.logout(auths)
   }
 
-  close =(e) => {
+  close = (e) => {
     e.preventDefault()
     let { authActions } = this.props
 
@@ -61,19 +61,19 @@ export default class Auths extends React.Component {
 
     let authorized = authSelectors.authorized()
 
-    let authorizedAuth = definitions.filter( (definition, key) => {
+    let authorizedAuth = definitions.filter((definition, key) => {
       return !!authorized.get(key)
     })
 
-    let nonOauthDefinitions = definitions.filter( schema => schema.get("type") !== "oauth2")
-    let oauthDefinitions = definitions.filter( schema => schema.get("type") === "oauth2")
+    let nonOauthDefinitions = definitions.filter(schema => schema.get("type") !== "oauth2")
+    let oauthDefinitions = definitions.filter(schema => schema.get("type") === "oauth2")
 
     return (
       <div className="auth-container">
         {
-          !!nonOauthDefinitions.size && <form onSubmit={ this.submitAuth }>
+          !!nonOauthDefinitions.size && <form onSubmit={this.submitAuth}>
             {
-              nonOauthDefinitions.map( (schema, name) => {
+              nonOauthDefinitions.map((schema, name) => {
                 return <AuthItem
                   key={name}
                   schema={schema}
@@ -82,32 +82,32 @@ export default class Auths extends React.Component {
                   onAuthChange={this.onAuthChange}
                   authorized={authorized}
                   errSelectors={errSelectors}
-                  />
+                />
               }).toArray()
             }
             <div className="auth-btn-wrapper">
               {
-                nonOauthDefinitions.size === authorizedAuth.size ? <Button className="btn modal-btn auth" onClick={ this.logoutClick }>Logout</Button>
-              : <Button type="submit" className="btn modal-btn auth authorize">Authorize</Button>
+                nonOauthDefinitions.size === authorizedAuth.size ? <Button className="btn modal-btn auth" onClick={this.logoutClick}>Logout</Button>
+                  : <Button type="submit" className="btn modal-btn auth authorize">Autenticar</Button>
               }
-              <Button className="btn modal-btn auth btn-done" onClick={ this.close }>Close</Button>
+              <Button className="btn modal-btn auth btn-done" onClick={this.close}>Fechar</Button>
             </div>
           </form>
         }
 
         {
           oauthDefinitions && oauthDefinitions.size ? <div>
-          <div className="scope-def">
-            <p>Scopes are used to grant an application different levels of access to data on behalf of the end user. Each API may declare one or more scopes.</p>
-            <p>API requires the following scopes. Select which ones you want to grant to Swagger UI.</p>
-          </div>
+            <div className="scope-def">
+              <p>Os escopos são usados para conceder a um aplicativo diferentes níveis de acesso aos dados em nome do usuário fina. Cada API deve declarar um ou mais escopos.</p>
+              <p>A API exige os seguintes escopos. Selecione qual você deseja usar.</p>
+            </div>
             {
-              definitions.filter( schema => schema.get("type") === "oauth2")
-                .map( (schema, name) =>{
-                  return (<div key={ name }>
-                    <Oauth2 authorized={ authorized }
-                            schema={ schema }
-                            name={ name } />
+              definitions.filter(schema => schema.get("type") === "oauth2")
+                .map((schema, name) => {
+                  return (<div key={name}>
+                    <Oauth2 authorized={authorized}
+                      schema={schema}
+                      name={name} />
                   </div>)
                 }
                 ).toArray()

@@ -76,9 +76,9 @@ const createClass = component => class extends Component {
   }
 }
 
-const Fallback = ({ 
+const Fallback = ({
   name // eslint-disable-line react/prop-types
-}) => <div className="fallback">😱 <i>Could not render { name === "t" ? "this component" : name }, see the console.</i></div>
+}) => <div className="fallback">😱 <i>Não foi possível exibir { name === "t" ? "este componente" : name }, veja o console.</i></div>
 
 const wrapRender = (component) => {
   const isStateless = component => !(component.prototype && component.prototype.isReactComponent)
@@ -102,7 +102,7 @@ const wrapRender = (component) => {
 export const getComponent = (getSystem, getStore, getComponents, componentName, container, config = {}) => {
 
   if(typeof componentName !== "string")
-    throw new TypeError("Need a string, to fetch a component. Was given a " + typeof componentName)
+    throw new TypeError("Necessário uma string para buscar um componente. Foi passado um(a) " + typeof componentName)
 
     // getComponent has a config object as a third, optional parameter
     // using the config object requires the presence of the second parameter, container
@@ -111,7 +111,7 @@ export const getComponent = (getSystem, getStore, getComponents, componentName, 
 
   if(!component) {
     if (!config.failSilently) {
-      getSystem().log.warn("Could not find component:", componentName)
+      getSystem().log.warn("Não foi possível encontrar o componente:", componentName)
     }
     return null
   }

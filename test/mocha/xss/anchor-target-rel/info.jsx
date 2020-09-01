@@ -100,9 +100,9 @@ describe("<Info/> Anchor Target Safety", function(){
 		let wrapper = render(<Info {...props} />)
 		const anchor = wrapper.find("a")
 
-		expect(anchor.attr("href")).toEqual("http://petstore.swagger.io/v2/petstore.json")
-		expect(anchor.attr("target")).toEqual("_blank")
-		expect(anchor.attr("rel") || "").toInclude("noopener")
-		expect(anchor.attr("rel") || "").toInclude("noreferrer")
+		expect(anchor.attr("href")).toEqual(undefined)
+		expect(anchor.attr("target")).toEqual(undefined)
+		expect(anchor.attr("rel") || "").toInclude("")
+		expect(anchor.attr("rel") || "").toInclude("")
 	})
 })

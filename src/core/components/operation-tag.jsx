@@ -60,7 +60,7 @@ export default class OperationTag extends React.Component {
     let tagExternalDocsUrl
     if (isFunc(oas3Selectors) && isFunc(oas3Selectors.selectedServer)) {
       tagExternalDocsUrl = buildUrl( rawTagExternalDocsUrl, specUrl, { selectedServer: oas3Selectors.selectedServer() } )
-    }    
+    }
 
     let isShownKey = ["operations-tag", tag]
     let showTag = layoutSelectors.isShown(isShownKey, docExpansion === "full" || docExpansion === "list")
@@ -104,7 +104,7 @@ export default class OperationTag extends React.Component {
 
             <button
               className="expand-operation"
-              title={showTag ? "Collapse operation": "Expand operation"}
+              title={showTag ? "Fechar operação": "Expandir operação"}
               onClick={() => layoutActions.show(isShownKey, !showTag)}>
 
               <svg className="arrow" width="20" height="20">

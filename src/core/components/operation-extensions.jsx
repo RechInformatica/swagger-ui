@@ -6,15 +6,15 @@ export const OperationExt = ({ extensions, getComponent }) => {
     return (
       <div className="opblock-section">
         <div className="opblock-section-header">
-          <h4>Extensions</h4>
+          <h4>Extensões</h4>
         </div>
         <div className="table-container">
 
           <table>
             <thead>
               <tr>
-                <td className="col_header">Field</td>
-                <td className="col_header">Value</td>
+                <td className="col_header">Campo</td>
+                <td className="col_header">Valor</td>
               </tr>
             </thead>
             <tbody>

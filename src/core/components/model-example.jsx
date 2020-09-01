@@ -64,11 +64,11 @@ export default class ModelExample extends React.Component {
     return <div className="model-example">
       <ul className="tab">
         <li className={ "tabitem" + ( this.state.activeTab === "example" ? " active" : "") }>
-          <a className="tablinks" data-name="example" onClick={ this.activeTab }>{isExecute ? "Edit Value" : "Example Value"}</a>
+          <a className="tablinks" data-name="example" onClick={ this.activeTab }>{isExecute ? "Editar valor" : "Exemplo de valor"}</a>
         </li>
         { schema ? <li className={ "tabitem" + ( this.state.activeTab === "model" ? " active" : "") }>
           <a className={ "tablinks" + ( isExecute ? " inactive" : "" )} data-name="model" onClick={ this.activeTab }>
-            {isOAS3 ? "Schema" : "Model" }
+            {isOAS3 ? "Esquema" : "Model" }
           </a>
         </li> : null }
       </ul>
@@ -76,7 +76,7 @@ export default class ModelExample extends React.Component {
         {
           this.state.activeTab === "example" ? (
             example ? example : (
-              <HighlightCode value="(no example available)" />
+              <HighlightCode value="(nenhum exemplo disponível)" />
             )
           ) : null
         }

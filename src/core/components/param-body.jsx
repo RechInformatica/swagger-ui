@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react"
+﻿import React, { PureComponent } from "react"
 import PropTypes from "prop-types"
 import { fromJS, List } from "immutable"
 import { getSampleSchema } from "core/utils"
@@ -127,12 +127,12 @@ export default class ParamBody extends PureComponent {
             !isExecute ? null
                        : <div className="body-param-edit">
                         <Button className={isEditBox ? "btn cancel body-param__example-edit" : "btn edit body-param__example-edit"}
-                                 onClick={this.toggleIsEditBox}>{ isEditBox ? "Cancel" : "Edit"}
+                                 onClick={this.toggleIsEditBox}>{ isEditBox ? "Cancelar" : "Editar"}
                          </Button>
                          </div>
           }
           <label htmlFor="">
-            <span>Parameter content type</span>
+            <span>Parâmetro de tipo de conteúdo</span>
             <ContentType value={ consumesValue } contentTypes={ consumes } onChange={onChangeConsumes} className="body-param-content-type" />
           </label>
         </div>

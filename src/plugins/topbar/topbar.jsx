@@ -8,7 +8,8 @@ import {parseSearch, serializeSearch} from "../../core/utils"
 export default class Topbar extends React.Component {
 
   static propTypes = {
-    layoutActions: PropTypes.object.isRequired
+    layoutActions: PropTypes.object.isRequired,
+    showForm: PropTypes.object.showForm
   }
 
   constructor(props, context) {
@@ -107,7 +108,7 @@ export default class Topbar extends React.Component {
     const classNames = ["download-url-input"]
     if (isFailed) classNames.push("failed")
     if (isLoading) classNames.push("loading")
-    
+
     const { urls } = getConfigs()
     let control = []
     let formOnSubmit = null
@@ -139,9 +140,11 @@ export default class Topbar extends React.Component {
             <Link>
               <img height="40" src={ Logo } alt="Swagger UI"/>
             </Link>
-            <form className="download-url-wrapper" onSubmit={formOnSubmit}>
-              {control.map((el, i) => cloneElement(el, { key: i }))}
-            </form>
+            {this.props.showForm ?
+              <form className="download-url-wrapper" onSubmit={formOnSubmit}>
+                {control.map((el, i) => cloneElement(el, { key: i }))}
+              </form> : null
+            }
           </div>
         </div>
       </div>

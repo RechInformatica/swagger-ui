@@ -284,23 +284,23 @@ export default class ParameterRow extends Component {
 
           { (bodyParam || !isExecute) && isDisplayParamEnum ?
             <Markdown className="parameter__enum" source={
-                "<i>Available values</i> : " + paramEnum.map(function(item) {
+                "<i>Valored disponíveis</i> : " + paramEnum.map(function(item) {
                     return item
                   }).toArray().join(", ")}/>
             : null
           }
 
           { (bodyParam || !isExecute) && paramDefaultValue !== undefined ?
-            <Markdown className="parameter__default" source={"<i>Default value</i> : " + paramDefaultValue}/>
+            <Markdown className="parameter__default" source={"<i>Valor default</i> : " + paramDefaultValue}/>
             : null
           }
 
           { (bodyParam || !isExecute) && paramExample !== undefined ?
-            <Markdown source={"<i>Example</i> : " + paramExample}/>
+            <Markdown source={"<i>Exemplo</i> : " + paramExample}/>
             : null
           }
 
-          {(isFormData && !isFormDataSupported) && <div>Error: your browser does not support FormData</div>}
+          {(isFormData && !isFormDataSupported) && <div>Erro: seu navegador não suporta FormData</div>}
 
           {
             isOAS3 && param.get("examples") ? (

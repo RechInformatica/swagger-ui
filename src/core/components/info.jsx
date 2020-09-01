@@ -42,10 +42,10 @@ class Contact extends React.Component {
 
     return (
       <div className="info__contact">
-        { url && <div><Link href={ sanitizeUrl(url) } target="_blank">{ name } - Website</Link></div> }
+        { url && <div><Link href={ sanitizeUrl(url) } target="_blank">Conheça a { name }</Link></div> }
         { email &&
           <Link href={sanitizeUrl(`mailto:${email}`)}>
-            { url ? `Send email to ${name}` : `Contact ${name}`}
+            { url ? `Envie um email para a ${name}` : `Contato ${name}`}
           </Link>
         }
       </div>
@@ -66,7 +66,7 @@ class License extends React.Component {
     let { license, getComponent, selectedServer, url: specUrl } = this.props
 
     const Link = getComponent("Link")
-    let name = license.get("name") || "License"  
+    let name = license.get("name") || "License"
     let url = buildUrl(license.get("url"), specUrl, {selectedServer})
 
     return (
@@ -106,6 +106,7 @@ export default class Info extends React.Component {
     getComponent: PropTypes.func.isRequired,
     oas3selectors: PropTypes.func,
     selectedServer: PropTypes.string,
+    showUrl: PropTypes.object.showUrl
   }
 
   render() {
@@ -133,7 +134,7 @@ export default class Info extends React.Component {
             { version && <VersionStamp version={version}></VersionStamp> }
           </h2>
           { host || basePath ? <InfoBasePath host={ host } basePath={ basePath } /> : null }
-          { url && <InfoUrl getComponent={getComponent} url={url} /> }
+          { url && this.props.showUrl ? <InfoUrl getComponent={getComponent} url={url} /> : null }
         </hgroup>
 
         <div className="description">
@@ -142,7 +143,7 @@ export default class Info extends React.Component {
 
         {
           termsOfServiceUrl && <div className="info__tos">
-            <Link target="_blank" href={ sanitizeUrl(termsOfServiceUrl) }>Terms of service</Link>
+            <Link target="_blank" href={ sanitizeUrl(termsOfServiceUrl) }>Termos do serviço</Link>
           </div>
         }
 

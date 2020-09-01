@@ -83,12 +83,12 @@ export default class ResponseBody extends React.PureComponent {
         }
 
         if(win.navigator && win.navigator.msSaveOrOpenBlob) {
-            bodyEl = <div><a href={ href } onClick={() => win.navigator.msSaveOrOpenBlob(blob, download)}>{ "Download file" }</a></div>
+            bodyEl = <div><a href={ href } onClick={() => win.navigator.msSaveOrOpenBlob(blob, download)}>{ "Download do arquivo" }</a></div>
         } else {
-            bodyEl = <div><a href={ href } download={ download }>{ "Download file" }</a></div>
+            bodyEl = <div><a href={ href } download={ download }>{ "Download do arquivo" }</a></div>
         }
       } else {
-        bodyEl = <pre className="microlight">Download headers detected but your browser does not support downloading binary via XHR (Blob).</pre>
+        bodyEl = <pre className="microlight">Headers do download detectados, mas seu navegador não suporta download de binários via XHR (Blob).</pre>
       }
 
       // Anything else (CORS)
@@ -97,7 +97,7 @@ export default class ResponseBody extends React.PureComponent {
       try {
         body = JSON.stringify(JSON.parse(content), null, "  ")
       } catch (error) {
-        body = "can't parse JSON.  Raw result:\n\n" + content
+        body = "Não é possível fazer parse do JSON. Raw result:\n\n" + content
       }
 
       bodyEl = <HighlightCode downloadable fileName={`${downloadName}.json`} value={ body } getConfigs={ getConfigs } canCopy />
@@ -134,7 +134,7 @@ export default class ResponseBody extends React.PureComponent {
         // in `updateParsedContent`, so let's display it
         bodyEl = <div>
           <p className="i">
-            Unrecognized response type; displaying content as text.
+            Tipo de resposta desconhecido; exibindo conteúdo como texto.
           </p>
           <HighlightCode downloadable fileName={`${downloadName}.txt`} value={ parsedContent } getConfigs={ getConfigs } canCopy />
         </div>
@@ -142,7 +142,7 @@ export default class ResponseBody extends React.PureComponent {
       } else {
         // Give up
         bodyEl = <p className="i">
-          Unrecognized response type; unable to display.
+          Tipo de resposta desconhecido; não é possível exibir.
         </p>
       }
     } else {

@@ -28,9 +28,9 @@ export default class VersionPragmaFilter extends React.PureComponent {
         {alsoShow}
         <div className="version-pragma__message version-pragma__message--ambiguous">
           <div>
-            <h3>Unable to render this definition</h3>
-            <p><code>swagger</code> and <code>openapi</code> fields cannot be present in the same Swagger or OpenAPI definition. Please remove one of the fields.</p>
-            <p>Supported version fields are <code>swagger: {"\"2.0\""}</code> and those that match <code>openapi: 3.0.n</code> (for example, <code>openapi: 3.0.0</code>).</p>
+            <h3>Incapaz de processar esta definição</h3>
+            <p>Campos do <code>swagger</code> e da <code>openapi</code> não podem estar presentes da mesma definição do Swagger ou OpenAPI. Por favor, remova um dos campos.</p>
+            <p>Campos de versão suportados são <code>swagger: {"\"2.0\""}</code> e aqueles que combinam com <code>openapi: 3.0.n</code> (por exemplo, <code>openapi: 3.0.0</code>).</p>
           </div>
         </div>
       </div>
@@ -41,9 +41,9 @@ export default class VersionPragmaFilter extends React.PureComponent {
         {alsoShow}
         <div className="version-pragma__message version-pragma__message--missing">
           <div>
-            <h3>Unable to render this definition</h3>
-            <p>The provided definition does not specify a valid version field.</p>
-            <p>Please indicate a valid Swagger or OpenAPI version field. Supported version fields are <code>swagger: {"\"2.0\""}</code> and those that match <code>openapi: 3.0.n</code> (for example, <code>openapi: 3.0.0</code>).</p>
+            <h3>Incapaz de processar esta definição</h3>
+            <p>A definição fornecida não especifica um campo de versão válido.</p>
+            <p>Por favor, indique um campo de versão do Swagger ou OpenAPI válido. Campos suportados são <code>swagger: {"\"2.0\""}</code> e aqueles que combinam com <code>openapi: 3.0.n</code> (por exemplo, <code>openapi: 3.0.0</code>).</p>
           </div>
         </div>
       </div>

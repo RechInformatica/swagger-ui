@@ -41,11 +41,11 @@ export default class ParameterIncludeEmpty extends Component {
         <label className={cx("parameter__empty_value_toggle", {
           "disabled": isDisabled
         })}>
-          <input type="checkbox" 
+          <input type="checkbox"
             disabled={isDisabled}
             checked={!isDisabled && isIncluded}
             onChange={this.onCheckboxChange} />
-          Send empty value
+          Enviar valor vazio
         </label>
       </div>
     )

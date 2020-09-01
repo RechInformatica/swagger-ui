@@ -86,7 +86,7 @@ export default class ObjectModel extends Component {
               <table className="model"><tbody>
               {
                 !description ? null : <tr className="description">
-                    <td>description:</td>
+                    <td>descrição:</td>
                     <td>
                       <Markdown source={ description } />
                     </td>

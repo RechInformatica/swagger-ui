@@ -105,7 +105,7 @@ export default class ExamplesSelect extends React.PureComponent {
       <div className="examples-select">
         {
           showLabels ? (
-            <span className="examples-select__section-label">Examples: </span>
+            <span className="examples-select__section-label">Exemplos: </span>
           ) : null
         }
         <select
