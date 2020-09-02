@@ -86,7 +86,7 @@ export default class OperationServers extends React.Component {
       </div>
       <div className="opblock-description-wrapper">
         <h4 className="message">
-          These {displaying}-level options override the global server options.
+          As opções "{displaying}-level" sobrrescrevem as opções globais do servidor.
         </h4>
         <Servers
           servers={serversToDisplay}
