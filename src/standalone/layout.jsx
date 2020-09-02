@@ -30,7 +30,7 @@ export default class StandaloneLayout extends React.Component {
     return (
 
       <Container className='swagger-ui'>
-        {Topbar ? <Topbar showForm={false} /> : null}
+        {Topbar ? <Topbar showForm={false} logoUrl="/public/api-docs-logo.svg" /> : null}
         <BaseLayout />
         <Row>
           <Col>

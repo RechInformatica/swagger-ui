@@ -9,7 +9,8 @@ export default class Topbar extends React.Component {
 
   static propTypes = {
     layoutActions: PropTypes.object.isRequired,
-    showForm: PropTypes.object.showForm
+    showForm: PropTypes.object.showForm,
+    logoUrl: PropTypes.object.logoUrl
   }
 
   constructor(props, context) {
@@ -138,7 +139,7 @@ export default class Topbar extends React.Component {
         <div className="wrapper">
           <div className="topbar-wrapper">
             <Link>
-              <img height="40" src={ Logo } alt="Swagger UI"/>
+              <img height="40" id="topbar-logo" src={ this.props.logoUrl ? this.props.logoUrl : Logo } alt="Swagger UI"/>
             </Link>
             {this.props.showForm ?
               <form className="download-url-wrapper" onSubmit={formOnSubmit}>
