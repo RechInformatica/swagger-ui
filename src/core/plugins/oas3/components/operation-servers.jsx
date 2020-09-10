@@ -81,12 +81,12 @@ export default class OperationServers extends React.Component {
     return <div className="opblock-section operation-servers">
       <div className="opblock-section-header">
         <div className="tab-header">
-          <h4 className="opblock-title">Servers</h4>
+          <h4 className="opblock-title">Servidores</h4>
         </div>
       </div>
       <div className="opblock-description-wrapper">
         <h4 className="message">
-          As opções "{displaying}-level" sobrrescrevem as opções globais do servidor.
+          As opções {displaying}-level sobrrescrevem as opções globais do servidor.
         </h4>
         <Servers
           servers={serversToDisplay}

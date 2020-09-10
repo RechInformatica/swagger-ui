@@ -1,7 +1,21 @@
+/**
+ * Copyright 2020 Rech Inform√°tica LTDA
+ *
+ * Copyright 2020 SmartBear Software Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+ *
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * This file has been modified by Rech Inform√°tica LTDA to translate the content displayed to users.
+ */
+
 import win from "core/window"
 import { btoa, sanitizeUrl, generateCodeVerifier, createCodeChallenge } from "core/utils"
 
-export default function authorize ( { auth, authActions, errActions, configs, authConfigs={} } ) {
+export default function authorize({ auth, authActions, errActions, configs, authConfigs = {} }) {
   let { schema, scopes, name, clientId } = auth
   let flow = schema.get("flow")
   let query = []
@@ -42,11 +56,11 @@ export default function authorize ( { auth, authActions, errActions, configs, au
 
   // todo move to parser
   if (typeof redirectUrl === "undefined") {
-    errActions.newAuthErr( {
+    errActions.newAuthErr({
       authId: name,
       source: "validation",
       level: "error",
-      message: "ConfiguraÁ„o oauth2RedirectUrl n„o informada. AutorizaÁ„o Oauth2 n„o pode ser executada."
+      message: "Configura√ß√µo oauth2RedirectUrl n√£o informada. Autoriza√ß√£o Oauth2 n√£o pode ser executada."
     })
     return
   }
@@ -67,15 +81,15 @@ export default function authorize ( { auth, authActions, errActions, configs, au
   }
 
   if (flow === "authorizationCode" && authConfigs.usePkceWithAuthorizationCodeGrant) {
-      const codeVerifier = generateCodeVerifier()
-      const codeChallenge = createCodeChallenge(codeVerifier)
+    const codeVerifier = generateCodeVerifier()
+    const codeChallenge = createCodeChallenge(codeVerifier)
 
-      query.push("code_challenge=" + codeChallenge)
-      query.push("code_challenge_method=S256")
+    query.push("code_challenge=" + codeChallenge)
+    query.push("code_challenge_method=S256")
 
-      // storing the Code Verifier so it can be sent to the token endpoint
-      // when exchanging the Authorization Code for an Access Token
-      auth.codeVerifier = codeVerifier
+    // storing the Code Verifier so it can be sent to the token endpoint
+    // when exchanging the Authorization Code for an Access Token
+    auth.codeVerifier = codeVerifier
   }
 
   let { additionalQueryStringParams } = authConfigs
