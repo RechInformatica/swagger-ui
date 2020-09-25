@@ -116,6 +116,7 @@ export default class ObjectModel extends Component {
                     ([key, value]) => {
                       let isDeprecated = isOAS3() && value.get("deprecated")
                       let isRequired = List.isList(requiredProperties) && requiredProperties.contains(key)
+                      let customClass = value.get("customClass")
 
                       let classNames = ["property-row"]
 
@@ -125,6 +126,10 @@ export default class ObjectModel extends Component {
 
                       if (isRequired) {
                         classNames.push("required")
+                      }
+
+                      if(customClass){
+                        classNames.push(customClass)
                       }
 
                       return (<tr key={key} className={classNames.join(" ")}>
