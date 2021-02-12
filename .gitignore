@@ -22,3 +22,4 @@ dist/swagger-ui*
 # Cypress
 test/e2e-cypress/screenshots
 test/e2e-cypress/videos
+*.bk
