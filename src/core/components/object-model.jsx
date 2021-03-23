@@ -52,6 +52,7 @@ export default class ObjectModel extends Component {
 
     let description = schema.get("description")
     let properties = schema.get("properties")
+    let avaliableActions = schema.get("avaliableActions")
     let additionalProperties = schema.get("additionalProperties")
     let title = schema.get("title") || displayName || name
     let requiredProperties = schema.get("required")
@@ -62,6 +63,7 @@ export default class ObjectModel extends Component {
     const Markdown = getComponent("Markdown", true)
     const Model = getComponent("Model")
     const ModelCollapse = getComponent("ModelCollapse")
+    const AvaliableActionsModel = getComponent("AvaliableActionsModel")
     const Property = getComponent("Property")
 
     const JumpToPathSection = () => {
@@ -98,6 +100,9 @@ export default class ObjectModel extends Component {
           <span className="inner-object">
             {
               <table className="model"><tbody>
+              {
+                avaliableActions && <AvaliableActionsModel value={ avaliableActions } getComponent={ getComponent }/>
+              }
               {
                 !description ? null : <tr className="description">
                     <td>descrição:</td>
