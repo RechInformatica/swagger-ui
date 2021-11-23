@@ -51,6 +51,7 @@ export default class ObjectModel extends Component {
     const { showExtensions } = getConfigs()
 
     let description = schema.get("description")
+    let comments = schema.get("comments")
     let properties = schema.get("properties")
     let avaliableActions = schema.get("avaliableActions")
     let additionalProperties = schema.get("additionalProperties")
@@ -108,6 +109,14 @@ export default class ObjectModel extends Component {
                     <td>descrição:</td>
                     <td>
                       <Markdown source={ description } />
+                    </td>
+                  </tr>
+              }
+              {
+                !comments ? null : <tr className="comments">
+                    <td>Observações:</td>
+                    <td>
+                      <Markdown source={ comments } />
                     </td>
                   </tr>
               }

@@ -30,9 +30,10 @@ export default class Primitive extends Component {
     let enumArray = schema.get("enum")
     let title = schema.get("title") || displayName || name
     let description = schema.get("description")
+    let comments = schema.get("comments")
     let extensions = getExtensions(schema)
     let properties = schema
-      .filter( ( v, key) => ["enum", "type", "format", "description", "$$ref"].indexOf(key) === -1 )
+      .filter( ( v, key) => ["enum", "type", "format", "description", "comments", "$$ref"].indexOf(key) === -1 )
       .filterNot( (v, key) => extensions.has(key) )
     const Markdown = getComponent("Markdown", true)
     const EnumModel = getComponent("EnumModel")
@@ -52,6 +53,10 @@ export default class Primitive extends Component {
         {
           !description ? null :
             <Markdown source={ description } />
+        }
+        {
+          !comments ? null :
+            <Markdown source={ comments } />
         }
         {
           xml && xml.size ? (<span><br /><span className={ propClass }>xml:</span>
