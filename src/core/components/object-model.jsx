@@ -113,8 +113,8 @@ export default class ObjectModel extends Component {
                   </tr>
               }
               {
-                !comments ? null : <tr className="comments">
-                    <td>Observações:</td>
+                !comments ? null : <tr className="comments-table">
+                    <td>observações:</td>
                     <td>
                       <Markdown source={ comments } />
                     </td>

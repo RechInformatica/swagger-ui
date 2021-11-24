@@ -118,11 +118,34 @@ table.model
         {
             color: #666;
             font-weight: normal;
-            
+
             td:first-child
             {
                 font-weight: bold;
             }
+        }
+
+        &.comments-table
+        {
+            color: #666;
+            font-weight: normal;
+
+            td:first-child
+            {
+                font-weight: bold;
+            }
+
+            td:last-child
+            {
+                font-style: italic;
+            }
+        }
+
+        &.comments-field
+        {
+            color: #666;
+            font-weight: normal;
+            font-style: italic;
         }
 
         &.property-row

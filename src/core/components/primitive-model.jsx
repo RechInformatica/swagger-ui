@@ -55,8 +55,9 @@ export default class Primitive extends Component {
             <Markdown source={ description } />
         }
         {
-          !comments ? null :
-            <Markdown source={ comments } />
+          !comments ? null : <tr className="comments-field">
+              <Markdown source={ comments } />
+            </tr>
         }
         {
           xml && xml.size ? (<span><br /><span className={ propClass }>xml:</span>
