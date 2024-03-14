@@ -107,6 +107,7 @@ export default class Operation extends PureComponent {
     const Responses = getComponent("responses")
     const Parameters = getComponent( "parameters" )
     const Execute = getComponent( "execute" )
+    const ExportCollection = getComponent( "exportCollection" )
     const Clear = getComponent( "clear" )
     const Collapse = getComponent( "Collapse" )
     const Markdown = getComponent("Markdown", true)
@@ -205,6 +206,18 @@ export default class Operation extends PureComponent {
               { !tryItOutEnabled || !allowTryItOut ? null :
 
                   <Execute
+                    operation={ operation }
+                    specActions={ specActions }
+                    specSelectors={ specSelectors }
+                    oas3Selectors={ oas3Selectors }
+                    oas3Actions={ oas3Actions }
+                    path={ path }
+                    method={ method }
+                    onExecute={ onExecute } />
+              }
+
+              { !tryItOutEnabled || !allowTryItOut ? null :
+                  <ExportCollection
                     operation={ operation }
                     specActions={ specActions }
                     specSelectors={ specSelectors }

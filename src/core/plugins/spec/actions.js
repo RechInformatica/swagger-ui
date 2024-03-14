@@ -6,6 +6,8 @@ import isString from "lodash/isString"
 import debounce from "lodash/debounce"
 import set from "lodash/set"
 import { isJSONObject, paramToValue, isEmptyValue } from "core/utils"
+import { Collection, Item, Header, RequestAuth } from "postman-collection"
+import { saveAs } from "file-saver"
 
 // Actions conform to FSA (flux-standard-actions)
 // {type: string,payload: Any|Error, meta: obj, error: bool}
@@ -233,7 +235,7 @@ export const requestResolvedSubtree = path => system => {
   const isPathAlreadyBatched = requestBatch
     .map(arr => arr.join("@@"))
     .indexOf(path.join("@@")) > -1
-  
+
   if(isPathAlreadyBatched) {
     return
   }
@@ -349,83 +351,9 @@ export const logRequest = (req) => {
 // Actually fire the request via fn.execute
 // (For debugging) and ease of testing
 export const executeRequest = (req) =>
-  ({fn, specActions, specSelectors, getConfigs, oas3Selectors}) => {
-    let { pathName, method, operation } = req
+  ({fn, specActions, getConfigs}) => {
     let { requestInterceptor, responseInterceptor } = getConfigs()
-
-    
-    let op = operation.toJS()
-    
-    // ensure that explicitly-included params are in the request
-
-    if (operation && operation.get("parameters")) {
-      operation.get("parameters")
-        .filter(param => param && param.get("allowEmptyValue") === true)
-        .forEach(param => {
-          if (specSelectors.parameterInclusionSettingFor([pathName, method], param.get("name"), param.get("in"))) {
-            req.parameters = req.parameters || {}
-            const paramValue = paramToValue(param, req.parameters)
-
-            // if the value is falsy or an empty Immutable iterable...
-            if(!paramValue || (paramValue && paramValue.size === 0)) {
-              // set it to empty string, so Swagger Client will treat it as
-              // present but empty.
-              req.parameters[param.get("name")] = ""
-            }
-          }
-        })
-    }
-
-    // if url is relative, parseUrl makes it absolute by inferring from `window.location`
-    req.contextUrl = parseUrl(specSelectors.url()).toString()
-
-    if(op && op.operationId) {
-      req.operationId = op.operationId
-    } else if(op && pathName && method) {
-      req.operationId = fn.opId(op, pathName, method)
-    }
-
-    if(specSelectors.isOAS3()) {
-      const namespace = `${pathName}:${method}`
-
-      req.server = oas3Selectors.selectedServer(namespace) || oas3Selectors.selectedServer()
-
-      const namespaceVariables = oas3Selectors.serverVariables({
-        server: req.server,
-        namespace
-      }).toJS()
-      const globalVariables = oas3Selectors.serverVariables({ server: req.server }).toJS()
-
-      req.serverVariables = Object.keys(namespaceVariables).length ? namespaceVariables : globalVariables
-
-      req.requestContentType = oas3Selectors.requestContentType(pathName, method)
-      req.responseContentType = oas3Selectors.responseContentType(pathName, method) || "*/*"
-      const requestBody = oas3Selectors.requestBodyValue(pathName, method)
-      const requestBodyInclusionSetting = oas3Selectors.requestBodyInclusionSetting(pathName, method)
-
-      if(isJSONObject(requestBody)) {
-        req.requestBody = JSON.parse(requestBody)
-      } else if(requestBody && requestBody.toJS) {
-        req.requestBody = requestBody
-          .map(
-            (val) => {
-              if (Map.isMap(val)) {
-                return val.get("value")
-              }
-              return val
-            }
-          )
-          .filter(
-            (value, key) => !isEmptyValue(value) || requestBodyInclusionSetting.get(key)
-          )
-          .toJS()
-      } else{
-        req.requestBody = requestBody
-      }
-    }
-
-    let parsedRequest = Object.assign({}, req)
-    parsedRequest = fn.buildRequest(parsedRequest)
+    let parsedRequest = specActions.parseRequest(req)
 
     specActions.setRequest(req.pathName, req.method, parsedRequest)
 
@@ -478,6 +406,161 @@ export const execute = ( { path, method, ...extras }={} ) => (system) => {
     scheme,
     responseContentType
   })
+}
+
+// I'm using extras as a way to inject properties into the final, `exportCollection` method - It's not great. Anyone have a better idea? @ponelat
+export const exportCollection = ( { path, method, ...extras }={} ) => (system) => {
+  let { fn:{fetch}, specSelectors, specActions } = system
+  let spec = specSelectors.specJsonWithResolvedSubtrees().toJS()
+  let scheme = specSelectors.operationScheme(path, method)
+  let { requestContentType, responseContentType } = specSelectors.contentTypeValues([path, method]).toJS()
+  let isXml = /xml/i.test(requestContentType)
+  let parameters = specSelectors.parameterValues([path, method], isXml).toJS()
+
+  let parsedRequest = specActions.parseRequest({
+    ...extras,
+    fetch,
+    spec,
+    pathName: path,
+    method, parameters,
+    requestContentType,
+    scheme,
+    responseContentType
+  })
+
+  // Create a new collection
+  specActions.createCollection(path, parsedRequest)
+}
+
+
+// Transform user input data to HTTP Request
+export const parseRequest = (req) =>
+  ({fn, specSelectors,  oas3Selectors}) => {
+    let { pathName, method, operation } = req
+    let op = operation.toJS()
+
+    // ensure that explicitly-included params are in the request
+    if (operation && operation.get("parameters")) {
+      operation.get("parameters")
+        .filter(param => param && param.get("allowEmptyValue") === true)
+        .forEach(param => {
+          if (specSelectors.parameterInclusionSettingFor([pathName, method], param.get("name"), param.get("in"))) {
+            req.parameters = req.parameters || {}
+            const paramValue = paramToValue(param, req.parameters)
+
+            // if the value is falsy or an empty Immutable iterable...
+            if (!paramValue || (paramValue && paramValue.size === 0)) {
+              // set it to empty string, so Swagger Client will treat it as
+              // present but empty.
+              req.parameters[param.get("name")] = ""
+            }
+          }
+        })
+    }
+
+    // if url is relative, parseUrl makes it absolute by inferring from `window.location`
+    req.contextUrl = parseUrl(specSelectors.url()).toString()
+
+    if (op && op.operationId) {
+      req.operationId = op.operationId
+    } else if (op && pathName && method) {
+      req.operationId = fn.opId(op, pathName, method)
+    }
+
+    if (specSelectors.isOAS3()) {
+      const namespace = `${pathName}:${method}`
+
+      req.server = oas3Selectors.selectedServer(namespace) || oas3Selectors.selectedServer()
+
+      const namespaceVariables = oas3Selectors.serverVariables({
+        server: req.server,
+        namespace
+      }).toJS()
+      const globalVariables = oas3Selectors.serverVariables({ server: req.server }).toJS()
+
+      req.serverVariables = Object.keys(namespaceVariables).length ? namespaceVariables : globalVariables
+
+      req.requestContentType = oas3Selectors.requestContentType(pathName, method)
+      req.responseContentType = oas3Selectors.responseContentType(pathName, method) || "*/*"
+      const requestBody = oas3Selectors.requestBodyValue(pathName, method)
+      const requestBodyInclusionSetting = oas3Selectors.requestBodyInclusionSetting(pathName, method)
+
+      if (isJSONObject(requestBody)) {
+        req.requestBody = JSON.parse(requestBody)
+      } else if (requestBody && requestBody.toJS) {
+        req.requestBody = requestBody
+          .map(
+            (val) => {
+              if (Map.isMap(val)) {
+                return val.get("value")
+              }
+              return val
+            }
+          )
+          .filter(
+            (value, key) => !isEmptyValue(value) || requestBodyInclusionSetting.get(key)
+          )
+          .toJS()
+      } else {
+        req.requestBody = requestBody
+      }
+    }
+
+    let parsedRequest = Object.assign({}, req)
+    parsedRequest = fn.buildRequest(parsedRequest)
+    return parsedRequest
+}
+
+// Create postman collection from request
+export function createCollection(path, parsedRequest) {
+  let postmanCollection = new Collection({
+    info: {
+      name: "SIGER® API WS"
+    },
+    item: [],
+  })
+
+  // set request headers
+  let headers = []
+  Object.entries(parsedRequest.headers).forEach(([key, value]) => {
+    if (key != "Authorization") {
+      headers.push(new Header({key: key, value: value}))
+    }
+  })
+
+  // if auth data is present and is bearer token, set auth data
+  const requestAuth = parsedRequest.headers.Authorization
+  let authData = null
+  if (requestAuth && requestAuth.match("Bearer")) {
+    const token = requestAuth.split(" ")[1]
+    authData = new RequestAuth({type: "bearer", bearer: [
+			{
+				key: "token",
+				value: token,
+				type: "string"
+			}]})
+
+  }
+
+  let postmanRequest = new Item({
+    name: `SIGER® API ${path}`,
+    request: {
+      header: headers,
+      url: parsedRequest.url,
+      method: parsedRequest.method,
+      body: {
+        mode: "raw",
+        raw: JSON.stringify(parsedRequest.body),
+      },
+      auth: authData,
+    }
+  })
+  postmanCollection.items.add(postmanRequest)
+  // Convert the collection to JSON
+  // so that it can be exported to a file
+  const collectionJSON = postmanCollection.toJSON()
+  var blob = new Blob([JSON.stringify(collectionJSON)], {type: "application/json;charset=utf-8"})
+  saveAs(blob, "apiSigerCollection.json")
 }
 
 export function clearResponse (path, method) {

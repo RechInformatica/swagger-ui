@@ -106,6 +106,7 @@ describe("spec plugin - actions", function(){
         },
         specActions: {
           executeRequest: createSpy(),
+          parseRequest: createSpy(),
           setMutatedRequest: createSpy(),
           setRequest: createSpy(),
           setResponse: createSpy()

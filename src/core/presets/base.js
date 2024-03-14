@@ -49,6 +49,7 @@ import ParameterExt from "core/components/parameter-extension"
 import ParameterIncludeEmpty from "core/components/parameter-include-empty"
 import ParameterRow from "core/components/parameter-row"
 import Execute from "core/components/execute"
+import ExportCollection from "core/components/export-collection"
 import Headers from "core/components/headers"
 import Errors from "core/components/errors"
 import ContentType from "core/components/content-type"
@@ -124,6 +125,7 @@ export default function() {
       parameters: Parameters,
       parameterRow: ParameterRow,
       execute: Execute,
+      exportCollection: ExportCollection,
       headers: Headers,
       errors: Errors,
       contentType: ContentType,

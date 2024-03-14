@@ -68,6 +68,13 @@
         color: $btn-execute-font-color;
         border-color: $btn-execute-border-color;
     }
+
+    &.export-collection
+    {
+        background-color: $btn-export-collection-background-color-alt;
+        color: $btn-export-collection-font-color;
+        border-color: $btn-export-collection-border-color;
+    }
 }
 
 .btn-group
