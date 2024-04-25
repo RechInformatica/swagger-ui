@@ -18,12 +18,14 @@ import PropTypes from "prop-types"
 //import "./topbar.less"
 import Logo from "./logo_small.svg"
 import { parseSearch, serializeSearch } from "../../core/utils"
+import { sanitizeUrl } from "core/utils"
 
 export default class Topbar extends React.Component {
 
   static propTypes = {
     layoutActions: PropTypes.object.isRequired,
-    logoUrl: PropTypes.object.logoUrl
+    logoUrl: PropTypes.object.logoUrl,
+    logoHref: ropTypes.object.logoHref
   }
 
   constructor(props, context) {
@@ -147,7 +149,7 @@ export default class Topbar extends React.Component {
       <div className="topbar">
         <div className="wrapper">
           <div className="topbar-wrapper">
-            <Link>
+            <Link href={ this.props.logoHref ? sanitizeUrl(this.props.logoHref) : "/" }>
               <img height="40" id="topbar-logo" src={this.props.logoUrl ? this.props.logoUrl : Logo} alt="Logo" />
             </Link>
             <form className="download-url-wrapper" onSubmit={formOnSubmit}>
